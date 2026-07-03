@@ -135,8 +135,8 @@ export default function Page() {
               <ArchDiagram />
             </div>
             <figcaption>
-              The platform as a media value chain — from production to consumption. Amber-outlined blocks are the
-              commerce and logged-out layers: business models, purchase &amp; payment flows, and the public website.
+              The platform as a media value chain — from production to consumption, including the commerce and
+              logged-out layers: business models, purchase &amp; payment flows, and the public website.
             </figcaption>
           </figure>
 

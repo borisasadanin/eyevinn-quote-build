@@ -99,8 +99,8 @@ export default function ArchDiagram() {
             height={b.h}
             rx={9}
             fill={FILL[b.variant || "base"]}
-            stroke={b.variant === "accent" ? "#f59e0b" : "rgba(255,255,255,0.08)"}
-            strokeWidth={b.variant === "accent" ? 2 : 1}
+            stroke="rgba(255,255,255,0.08)"
+            strokeWidth={1}
           />
           <BoxText b={b} />
         </g>
