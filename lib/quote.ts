@@ -159,12 +159,12 @@ export const quote = {
         subtag: "Fixed price — excl. VAT",
         title: "Target Architecture",
         body: "A fixed-price project delivering the complete target architecture: every component specified, a capacity/scaling plan, and the firm cost basis for Phases 2 and 3.",
-        price: "100 000 SEK",
+        price: "180 000 SEK",
         unit: "fixed price — excl. VAT",
         rows: [
           { label: "Deliverable", value: "Target architecture blueprint, capacity plan and implementation roadmap." },
           { label: "Payment", value: "On delivery. 30 calendar days' terms." },
-          { label: "Basis", value: "Defines the scope and price of Phases 2 and 3." },
+          { label: "Credit", value: "50% is credited against Phase 2 if you continue to implementation." },
         ],
       },
       {
@@ -184,18 +184,19 @@ export const quote = {
         tag: "Phase 3 — Operation & Maintenance",
         subtag: "Monthly — excl. VAT",
         title: "Managed Operation & Maintenance",
-        body: "Eyevinn operates and maintains the running platform: monitoring, updates, incident response and SLA. The monthly cost is defined by the target architecture delivered in Phase 1.",
+        body: "Eyevinn operates and maintains the running platform: monitoring, updates, incident response and SLA. The monthly running cost — including third-party components such as CDN, DRM and payment (e.g. Klarna) — is defined by the target architecture delivered in Phase 1.",
         price: "Set by Phase 1",
         unit: "monthly cost — excl. VAT",
         rows: [
           { label: "Monthly cost", value: "Determined by the Phase 1 target architecture." },
+          { label: "Third-party", value: "CDN, DRM and payment (e.g. Klarna) billed at cost, scaling with usage." },
           { label: "Infrastructure", value: "OSC consumption billed at cost — no platform margin." },
-          { label: "Included", value: "Monitoring, updates, incident response, SLA and a monthly report." },
+          { label: "Included", value: "Monitoring, updates, incident response, SLA and monthly report." },
         ],
       },
     ],
     footnote:
-      "All prices exclude VAT. Phase 1 is a fixed price; the price of Phase 2 and the monthly cost of Phase 3 are defined by the target architecture delivered in Phase 1. Infrastructure (Open Source Cloud) is billed at cost with no platform margin. On-site travel outside Stockholm invoiced at cost. Payment terms 30 calendar days.",
+      "All prices exclude VAT. Phase 1 is a fixed price, of which 50% is credited against Phase 2 if the client continues to implementation; the price of Phase 2 and the monthly cost of Phase 3 are defined by the target architecture delivered in Phase 1. Infrastructure (Open Source Cloud) and third-party components (CDN, DRM, payment, etc.) are billed at cost with no platform margin. On-site travel outside Stockholm invoiced at cost. Payment terms 30 calendar days.",
   },
 
   assumptions: {
