@@ -198,9 +198,11 @@ export default function Page() {
         <div className="wrap">
           <div className="eyebrow">Pricing</div>
           <h2 className="section-title">{q.pricing.heading}</h2>
-          <div className="pricing-grid" style={{ marginTop: 32 }}>
+          <p className="section-lede">{q.pricing.lede}</p>
+          <div className="pricing-grid">
             {q.pricing.parts.map((p, i) => (
-              <div className="price-card" key={i}>
+              <div className={`price-card${(p as any).upcoming ? " price-card--upcoming" : ""}`} key={i}>
+                {(p as any).badge && <div className="price-badge">{(p as any).badge}</div>}
                 <div className="price-tag">{p.tag}</div>
                 <div className="price-subtag">{p.subtag}</div>
                 <h3>{p.title}</h3>
