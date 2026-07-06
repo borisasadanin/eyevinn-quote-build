@@ -167,7 +167,7 @@ export const quote = {
           { label: "Scope", value: "This quote covers Phase 1 only." },
           { label: "You receive", value: "Detailed architecture for the whole platform, an operations plan, and priced Phases 2 & 3 with timelines." },
           { label: "Payment", value: "On delivery. 30 calendar days' terms." },
-          { label: "Credit", value: "50% is credited against Phase 2 if you continue to implementation." },
+          { label: "Credit", value: "50% of this fee — 90 000 SEK — is deducted from the Phase 2 price if you choose to proceed to implementation." },
         ],
       },
       {
@@ -180,6 +180,7 @@ export const quote = {
         price: "Set by Phase 1",
         unit: "priced & scheduled in Phase 1",
         rows: [
+          { label: "Phase 1 credit", value: "90 000 SEK (50% of the Phase 1 fee) is deducted from this phase if you proceed." },
           { label: "Pricing", value: "Determined by the Phase 1 target architecture." },
           { label: "Timeline", value: "Set out in the Phase 1 implementation roadmap." },
           { label: "Scope", value: "Ingest, processing, delivery, apps, commerce and data layers." },
@@ -203,7 +204,7 @@ export const quote = {
       },
     ],
     footnote:
-      "All prices exclude VAT. Phase 1 is a fixed price, of which 50% is credited against Phase 2 if the client continues to implementation; the price of Phase 2 and the monthly cost of Phase 3 are defined by the target architecture delivered in Phase 1. Infrastructure (Open Source Cloud) and third-party components (CDN, DRM, payment, etc.) are billed at cost with no platform margin. On-site travel outside Stockholm invoiced at cost. Payment terms 30 calendar days.",
+      "All prices exclude VAT. Phase 1 is a fixed price, of which 50% (90 000 SEK) is credited against the Phase 2 price if the client continues to implementation; the price of Phase 2 and the monthly cost of Phase 3 are defined by the target architecture delivered in Phase 1. Infrastructure (Open Source Cloud) and third-party components (CDN, DRM, payment, etc.) are billed at cost with no platform margin. On-site travel outside Stockholm invoiced at cost. Payment terms 30 calendar days.",
   },
 
   assumptions: {
