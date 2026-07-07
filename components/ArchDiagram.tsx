@@ -1,113 +1,104 @@
-// Open Intercom deployment diagram, drawn to match the quote's dark / amber theme.
-// Boxes with an amber border are the parts hosted inside the BBC environment.
+// Engagement flow diagram, drawn to match the quote's dark / amber theme:
+// four steps from preparation to handover, on top of the BBC-hosted environment.
 
-type Box = {
-  x: number; y: number; w: number; h: number;
-  lines: string[];
-  variant?: "base" | "upper" | "accent";
-};
+type Step = { label: string; lines: string[] };
 
-type Banner = { x: number; w: number; label: string };
+const steps: Step[] = [
+  {
+    label: "1 · Prepare",
+    lines: ["Review of your setup,", "logs & configuration.", "Version plan and", "preparation checklist."],
+  },
+  {
+    label: "2 · Deploy & align",
+    lines: ["Current Intercom Manager,", "Eyevinn's SMB fork,", "MongoDB — versions aligned,", "environment fixed as we go."],
+  },
+  {
+    label: "3 · Verify",
+    lines: ["Conference listing, room join,", "live audio between participants.", "Media paths (TURN/STUN)", "proven in the real BCN."],
+  },
+  {
+    label: "4 · Train & hand over",
+    lines: ["Hands-on training,", "runbook & upgrade path,", "written handover,", "follow-up as needed."],
+  },
+];
 
 const W = 250;
-const cols = [20, 310, 600, 890];
-
-const boxes: Box[] = [
-  // Row 1 — the main chain from user to media
-  { x: cols[0], y: 30, w: W, h: 130, variant: "upper", lines: ["Producers & operators", "browser-based panels,", "no installed software"] },
-  { x: cols[1], y: 30, w: W, h: 130, variant: "base", lines: ["Open Intercom", "web client", "rooms & panels"] },
-  { x: cols[2], y: 30, w: W, h: 130, variant: "base", lines: ["Intercom Manager", "control plane,", "REST API — current release"] },
-  { x: cols[3], y: 30, w: W, h: 130, variant: "base", lines: ["Symphony Media Bridge", "Eyevinn fork — WebRTC SFU,", "version-aligned"] },
-
-  // Row 2 — supporting services
-  { x: cols[2], y: 190, w: W, h: 110, variant: "base", lines: ["MongoDB", "conference & state"] },
-  { x: cols[3], y: 190, w: W, h: 110, variant: "base", lines: ["TURN / STUN", "media path through", "your network"] },
-
-  // Environment box spanning the hosted components
-  { x: cols[1], y: 330, w: cols[3] + W - cols[1], h: 96, variant: "accent", lines: ["BBC environment", "Docker on Ubuntu VM · Business Contribution Network (BCN)"] },
-];
-
-const banners: Banner[] = [
-  { x: cols[0], w: W, label: "Users" },
-  { x: cols[1], w: W, label: "Client" },
-  { x: cols[2], w: W, label: "Control plane" },
-  { x: cols[3], w: W, label: "Media plane" },
-];
-
-const FILL: Record<string, string> = {
-  base: "#565b73",
-  upper: "#7f84a3",
-  accent: "#565b73",
-};
-
-function BoxText({ b }: { b: Box }) {
-  const cx = b.x + b.w / 2;
-  const lh = 17;
-  const startY = b.y + b.h / 2 - ((b.lines.length - 1) * lh) / 2 + 5;
-  return (
-    <>
-      {b.lines.map((ln, i) => (
-        <text
-          key={i}
-          x={cx}
-          y={startY + i * lh}
-          textAnchor="middle"
-          fontSize={i === 0 ? 14.5 : 12.5}
-          fontWeight={i === 0 ? 600 : 400}
-          fill="#ffffff"
-          fillOpacity={i === 0 ? 1 : 0.8}
-        >
-          {ln}
-        </text>
-      ))}
-    </>
-  );
-}
+const GAP = 40;
+const X0 = 20;
 
 export default function ArchDiagram() {
   return (
-    <svg viewBox="0 0 1160 540" role="img" aria-label="Open Intercom deployment architecture" style={{ width: "100%", height: "auto", display: "block" }}>
-      {/* boxes */}
-      {boxes.map((b, i) => (
-        <g key={i}>
-          <rect
-            x={b.x}
-            y={b.y}
-            width={b.w}
-            height={b.h}
-            rx={9}
-            fill={FILL[b.variant || "base"]}
-            stroke={b.variant === "accent" ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.08)"}
-            strokeWidth={b.variant === "accent" ? 1.5 : 1}
-          />
-          <BoxText b={b} />
-        </g>
-      ))}
-
-      {/* stage banners (arrows) */}
-      {banners.map((bn, i) => {
-        const y = 460;
-        const h = 64;
+    <svg
+      viewBox="0 0 1180 430"
+      role="img"
+      aria-label="Engagement flow: prepare, deploy and align, verify, train and hand over"
+      style={{ width: "100%", height: "auto", display: "block" }}
+    >
+      {steps.map((s, i) => {
+        const x = X0 + i * (W + GAP);
+        const bannerY = 20;
+        const bannerH = 56;
         const tip = 18;
-        const pts = `${bn.x},${y} ${bn.x + bn.w - tip},${y} ${bn.x + bn.w},${y + h / 2} ${bn.x + bn.w - tip},${y + h} ${bn.x},${y + h}`;
+        const pts = `${x},${bannerY} ${x + W - tip},${bannerY} ${x + W},${bannerY + bannerH / 2} ${x + W - tip},${bannerY + bannerH} ${x},${bannerY + bannerH}`;
+        const boxY = 100;
+        const boxH = 190;
+        const lh = 21;
+        const startY = boxY + boxH / 2 - ((s.lines.length - 1) * lh) / 2 + 5;
         return (
           <g key={i}>
+            {/* step banner */}
             <polygon points={pts} fill="#17171c" />
-            <rect x={bn.x} y={y} width={4} height={h} fill="#f59e0b" />
+            <rect x={x} y={bannerY} width={4} height={bannerH} fill="#f59e0b" />
             <text
-              x={bn.x + (bn.w - tip) / 2 + 4}
-              y={y + h / 2 + 5}
+              x={x + (W - tip) / 2 + 4}
+              y={bannerY + bannerH / 2 + 5}
               textAnchor="middle"
               fontSize={15}
               fontWeight={600}
               fill="#ffffff"
               letterSpacing="0.02em"
             >
-              {bn.label}
+              {s.label}
             </text>
+
+            {/* connector to next step */}
+            {i < steps.length - 1 && (
+              <path
+                d={`M ${x + W + 8} ${bannerY + bannerH / 2} L ${x + W + GAP - 8} ${bannerY + bannerH / 2}`}
+                stroke="rgba(245,158,11,0.5)"
+                strokeWidth={2}
+                strokeDasharray="3 5"
+              />
+            )}
+
+            {/* detail box */}
+            <rect x={x} y={boxY} width={W} height={boxH} rx={9} fill="#565b73" stroke="rgba(255,255,255,0.08)" strokeWidth={1} />
+            {s.lines.map((ln, j) => (
+              <text key={j} x={x + W / 2} y={startY + j * lh} textAnchor="middle" fontSize={13} fill="#ffffff" fillOpacity={0.85}>
+                {ln}
+              </text>
+            ))}
           </g>
         );
       })}
+
+      {/* environment strip */}
+      <rect
+        x={X0}
+        y={330}
+        width={X0 + 3 * (W + GAP) + W - X0}
+        height={72}
+        rx={9}
+        fill="#565b73"
+        stroke="rgba(245,158,11,0.55)"
+        strokeWidth={1.5}
+      />
+      <text x={X0 + (3 * (W + GAP) + W) / 2} y={360} textAnchor="middle" fontSize={14.5} fontWeight={600} fill="#ffffff">
+        Delivered remotely, in your environment
+      </text>
+      <text x={X0 + (3 * (W + GAP) + W) / 2} y={382} textAnchor="middle" fontSize={12.5} fill="#ffffff" fillOpacity={0.8}>
+        The full Open Intercom stack — Docker on Ubuntu VM · BBC Business Contribution Network (BCN)
+      </text>
     </svg>
   );
 }

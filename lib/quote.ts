@@ -16,8 +16,9 @@ export const quote = {
 
   nav: [
     { id: "hero", label: "Overview" },
-    { id: "engagement", label: "Engagement" },
-    { id: "architecture", label: "Architecture" },
+    { id: "background", label: "Background" },
+    { id: "approach", label: "Approach" },
+    { id: "scope", label: "Scope" },
     { id: "deliverables", label: "Deliverables" },
     { id: "pricing", label: "Pricing" },
     { id: "assumptions", label: "About" },
@@ -30,66 +31,76 @@ export const quote = {
     title: "Open Intercom, Up and Running at the BBC",
     subtitle:
       "A focused deployment engagement: a principal Open Intercom engineer sets up and verifies the full stack in your environment, and trains your team to run it yourselves.",
+    facts: [
+      "Principal Open Intercom engineer",
+      "Delivered remotely",
+      "Time & materials — €159 / hour",
+      "Estimated 4–5 working days",
+    ],
   },
 
-  engagement: {
-    heading: "Engagement Overview",
+  background: {
+    heading: "Where We Are",
     lede: "From intermittent troubleshooting to a verified working setup",
     paragraphs: [
-      "The BBC has been working with Open Intercom for over a year and now runs a self-hosted deployment inside its own environment, on the Business Contribution Network (BCN). The recent troubleshooting rounds — most recently the mismatch between Intercom Manager v4.00 and a 2021 build of Symphony Media Bridge — show why debugging one symptom at a time is slow and frustrating for both sides.",
-      "As we have discussed and agreed, we propose a focused engagement instead. A principal engineer from the Open Intercom team works directly with your engineers to set up the whole stack correctly in your environment — including Eyevinn's maintained fork of Symphony Media Bridge, version-aligned with the Intercom Manager — and verifies it end-to-end against your production use cases.",
-      "The engagement includes the training and documentation your team needs to operate, troubleshoot and upgrade the installation independently, including a clear upgrade path as you move your platform forward (for example to Ubuntu 26.04 LTS). The goal is simple: after the engagement, you run Open Intercom yourselves, and Eyevinn is an option — not a dependency.",
-      "Proposed timing: focused working sessions with your team on 4–5 August 2026, preceded by preparation on our side and followed by wrap-up and any remaining fixes in the weeks after. The total effort is estimated at 4–5 working days, delivered remotely.",
+      "The BBC has been working with Open Intercom for over a year and now runs a self-hosted deployment inside its own environment, on the Business Contribution Network (BCN). Along the way you have hit a series of blockers — most recently a mismatch between Intercom Manager v4.00 and a 2021 build of Symphony Media Bridge. Each one has been investigated thoroughly on your side, but they share a root cause: the stack has never been set up and verified as a whole, in your network, by someone who knows the product from the inside.",
+      "As we have discussed and agreed, we therefore propose a focused engagement instead of continued ad-hoc troubleshooting. A principal engineer from the Open Intercom team works directly with your engineers to get the whole stack correctly installed, version-aligned and configured — and then verifies it end-to-end against the way your productions will actually use it.",
+      "The goal is independence, not dependence: the engagement ends with your team trained, the setup documented, and a clear upgrade path for the platform going forward — including the move to Ubuntu 26.04 LTS. After the engagement, you run Open Intercom yourselves, and Eyevinn is an option — not a requirement.",
+      "Work starts on a date we agree together once the engagement is confirmed, and is delivered remotely in working sessions with your team.",
     ],
   },
 
-  // Grouped architecture: layers, each with its components.
-  architecture: {
-    heading: "What We Set Up",
-    lede: "The full Open Intercom stack, version-aligned and verified in your environment",
+  approach: {
+    heading: "How the Engagement Runs",
+    lede: "Four steps — from today's blocker to a working intercom your team owns",
     intro:
-      "Open Intercom is a small number of components that must agree with each other — and with the network they run in. The engagement covers all of them: correct versions, correct configuration, and verified connectivity inside the BBC environment.",
-    layers: [
+      "The engagement is deliberately short and hands-on. We prepare before we take your engineers' time, fix the stack rather than the symptom, prove it works in your real network, and leave the knowledge with you.",
+    figcaption:
+      "The engagement in four steps, delivered remotely in your environment — the full Open Intercom stack in Docker on your Ubuntu VM inside the BCN.",
+    steps: [
       {
-        title: "Clients & Access",
-        components: [
-          { name: "Web Client", body: "Browser-based intercom panels for producers and operators — no installed software required." },
-          { name: "Rooms & Production Setup", body: "Conference and room configuration matched to how your productions actually communicate." },
-        ],
+        title: "Prepare",
+        body: "Before any sessions are booked, we review your current setup — versions, configuration, logs and the investigation work you have already done — and prepare a version and configuration plan plus a short checklist of accesses and prerequisites. Your engineers' time is spent fixing, not explaining.",
       },
       {
-        title: "Control Plane",
-        components: [
-          { name: "Intercom Manager", body: "The orchestration layer and REST API — upgraded to the current release and configured for your environment." },
-          { name: "MongoDB", body: "Conference and state storage, verified against the manager version in use." },
-        ],
+        title: "Deploy & align",
+        body: "Together with your team we bring the stack to a known-good state: the current Intercom Manager release, Eyevinn's maintained fork of Symphony Media Bridge (replacing the 2021 upstream build behind the current blocker), and a MongoDB configuration verified against those versions. Environment issues we find along the way — container networking, host configuration — are fixed as we go.",
       },
       {
-        title: "Media Plane",
-        components: [
-          { name: "Symphony Media Bridge (Eyevinn fork)", body: "The WebRTC media bridge that mixes and routes audio. We deploy Eyevinn's maintained fork, version-aligned with the Intercom Manager — replacing the 2021 upstream build at the root of the current blocker." },
-          { name: "WebRTC Connectivity (TURN / STUN)", body: "Media path validation inside the BCN — the part that only ever surfaces in a real network, verified in yours." },
-        ],
+        title: "Verify end-to-end",
+        body: "We prove the deployment works where it matters: in your network. Conference listing, room join and live audio between participants, including the WebRTC media paths (TURN/STUN) through the BCN — verified against your production use cases, not in isolation.",
       },
       {
-        title: "Environment",
-        components: [
-          { name: "Docker on Ubuntu", body: "Container configuration and inter-container networking on your VM, as-built and documented." },
-          { name: "Upgrade Path", body: "A documented procedure for future upgrades, including the move to Ubuntu 26.04 LTS as 24.04 leaves support." },
-        ],
+        title: "Train & hand over",
+        body: "Hands-on training for your engineers in operating, troubleshooting and upgrading the stack, a runbook documenting the as-built setup including the Ubuntu 26.04 LTS upgrade path, and a short written handover with recommendations. Follow-up assistance in the weeks after is available at the same hourly rate.",
       },
     ],
-    scale: {
-      title: "Why a focused engagement",
-      body: "Every issue you have hit over the past months traces back to the same thing: components that were never verified together, in your network. A few focused days with the engineer who knows the product resolves the class of problem — not just the current symptom. It is faster and cheaper than another six months of intermittent troubleshooting, and it ends with your team in control.",
+  },
+
+  scope: {
+    heading: "Scope",
+    lede: "What the engagement covers — and what we need from you",
+    included: {
+      title: "In scope",
       points: [
-        "Version-aligned stack: Intercom Manager + Eyevinn's maintained SMB fork",
-        "End-to-end verification in the real BBC network, not in isolation",
-        "Configuration adjusted to your production use cases",
-        "Training so day-to-day operation does not depend on Eyevinn",
-        "A documented upgrade path, including Ubuntu 26.04 LTS",
+        "The full Open Intercom stack: web client, Intercom Manager, Eyevinn's Symphony Media Bridge fork, MongoDB, TURN/STUN",
+        "Your environment: Docker and inter-container networking on the Ubuntu VM in the BCN",
+        "Environment fixes discovered during the work, handled as we go",
+        "Configuration matched to your production use cases",
+        "Training, runbook and written handover",
+        "Follow-up assistance after the engagement, at the same rate",
       ],
     },
+    needs: {
+      title: "What we need from you",
+      points: [
+        "Remote access to the environment, or an engineer driving while we work side by side",
+        "Your engineers in the working sessions — the training happens in the work itself",
+        "Someone who can carry out network or firewall changes inside the BBC where we cannot",
+        "A couple of test participants for the end-to-end verification",
+      ],
+    },
+    note: "Some of what needs fixing lives in your environment and cannot be scoped from the outside — that is exactly why this engagement is charged on time & materials rather than as a fixed price. You pay for the work actually needed, and nothing for risk margins.",
   },
 
   deliverables: {
@@ -107,12 +118,12 @@ export const quote = {
         body: "Current Intercom Manager together with Eyevinn's maintained fork of Symphony Media Bridge, with the versions and compatibility documented.",
       },
       {
-        title: "Deployment documentation & runbook",
-        body: "The as-built configuration — containers, networking, environment — plus operating procedures and the upgrade procedure, including the Ubuntu 26.04 LTS path.",
+        title: "Runbook & upgrade path",
+        body: "The as-built configuration — containers, networking, environment — plus operating procedures and the upgrade procedure, including the move to Ubuntu 26.04 LTS.",
       },
       {
-        title: "Training for your engineers",
-        body: "Hands-on training in operating, troubleshooting and upgrading the stack, so you can run it and extend it yourselves.",
+        title: "Trained engineers",
+        body: "Hands-on training in operating, troubleshooting and upgrading the stack, so your team can run it and extend it yourselves.",
       },
       {
         title: "Handover & recommendations",
@@ -120,7 +131,7 @@ export const quote = {
       },
     ],
     timeline:
-      "On timing: we propose focused working sessions with your team on 4–5 August 2026, with preparation beforehand and wrap-up plus any remaining fixes in the weeks after. Total estimated effort is 4–5 working days, delivered remotely.",
+      "On timing: the total effort is estimated at 4–5 working days, delivered remotely. The work does not need to be contiguous — preparation, focused sessions and follow-up are planned together with your team, and work starts on a date we agree once the engagement is confirmed.",
   },
 
   pricing: {
@@ -139,7 +150,7 @@ export const quote = {
           { label: "Estimated effort", value: "4–5 working days (approx. 32–40 hours)." },
           { label: "Indicative total", value: "Approx. €5,100–€6,400 at the estimated effort." },
           { label: "Delivery", value: "Remote, in working sessions with your engineers." },
-          { label: "Proposed dates", value: "Focused sessions 4–5 August 2026, follow-up in the weeks after as needed." },
+          { label: "Start", value: "By agreement — dates are planned together once the engagement is confirmed." },
           { label: "Invoicing", value: "Monthly, on actual hours worked. 30 calendar days' terms." },
         ],
       },
@@ -162,7 +173,7 @@ export const quote = {
 
   cta: {
     heading: "Ready to get Open Intercom running?",
-    body: "Reply to confirm the proposed August dates and we'll book the engineer and send over a short preparation checklist.",
+    body: "Reply to accept this quote and we'll agree on dates and send over a short preparation checklist.",
     primary: { label: "Open Intercom on GitHub", href: "https://github.com/Eyevinn/intercom-manager" },
   },
 

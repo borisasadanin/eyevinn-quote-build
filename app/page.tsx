@@ -100,72 +100,89 @@ export default function Page() {
         <div className="eyebrow">{q.hero.eyebrow}</div>
         <h1>{q.hero.title}</h1>
         <p className="hero-sub">{q.hero.subtitle}</p>
-        <div className="meta-line">
+        <div className="links" style={{ marginTop: 30, justifyContent: "center" }}>
+          {q.hero.facts.map((f, i) => (
+            <span className="link-pill" key={i}>
+              {f}
+            </span>
+          ))}
+        </div>
+        <div className="meta-line" style={{ marginTop: 26 }}>
           Prepared for <strong>{q.meta.client}</strong> · {q.meta.date} · Quote {q.meta.quoteId}
         </div>
         <div className="hero-scroll">Scroll to explore</div>
       </header>
 
-      {/* Engagement */}
-      <section id="engagement">
+      {/* Background */}
+      <section id="background">
         <div className="wrap">
-          <div className="eyebrow">Engagement</div>
-          <h2 className="section-title">{q.engagement.heading}</h2>
-          <p className="section-lede">{q.engagement.lede}</p>
+          <div className="eyebrow">Background</div>
+          <h2 className="section-title">{q.background.heading}</h2>
+          <p className="section-lede">{q.background.lede}</p>
           <div className="prose">
-            {q.engagement.paragraphs.map((p, i) => (
+            {q.background.paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Architecture */}
-      <section id="architecture">
+      {/* Approach */}
+      <section id="approach">
         <div className="wrap">
-          <div className="eyebrow">Architecture</div>
-          <h2 className="section-title">{q.architecture.heading}</h2>
-          <p className="section-lede">{q.architecture.lede}</p>
+          <div className="eyebrow">Approach</div>
+          <h2 className="section-title">{q.approach.heading}</h2>
+          <p className="section-lede">{q.approach.lede}</p>
           <div className="prose" style={{ marginBottom: 32 }}>
-            <p>{q.architecture.intro}</p>
+            <p>{q.approach.intro}</p>
           </div>
 
           <figure className="diagram">
             <div className="diagram-scroll">
               <ArchDiagram />
             </div>
-            <figcaption>
-              The Open Intercom stack as deployed in your environment — browser clients, control plane and media
-              plane, hosted in Docker on your Ubuntu VM inside the BBC Business Contribution Network.
-            </figcaption>
+            <figcaption>{q.approach.figcaption}</figcaption>
           </figure>
 
-          {q.architecture.layers.map((layer, li) => (
-            <div className="arch-layer" key={li}>
-              <div className="arch-layer-title">
-                <span className="arch-layer-num">{li + 1}</span>
-                {layer.title}
+          <div className="items">
+            {q.approach.steps.map((s, i) => (
+              <div className="item" key={i}>
+                <div className="item-num">{i + 1}</div>
+                <div>
+                  <div className="item-title">{s.title}</div>
+                  <div className="item-body">{s.body}</div>
+                </div>
               </div>
-              <div className="arch-grid">
-                {layer.components.map((c, ci) => (
-                  <div className="arch-card" key={ci}>
-                    <div className="arch-card-name">{c.name}</div>
-                    <div className="arch-card-body">{c.body}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <div className="scale-block">
-            <div className="scale-title">{q.architecture.scale.title}</div>
-            <p className="scale-body">{q.architecture.scale.body}</p>
-            <ul className="scale-points">
-              {q.architecture.scale.points.map((p, i) => (
-                <li key={i}>{p}</li>
-              ))}
-            </ul>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Scope */}
+      <section id="scope">
+        <div className="wrap">
+          <div className="eyebrow">Scope</div>
+          <h2 className="section-title">{q.scope.heading}</h2>
+          <p className="section-lede">{q.scope.lede}</p>
+          <div className="arch-grid">
+            <div className="arch-card">
+              <div className="arch-card-name">{q.scope.included.title}</div>
+              <ul className="scale-points" style={{ marginTop: 12 }}>
+                {q.scope.included.points.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="arch-card">
+              <div className="arch-card-name">{q.scope.needs.title}</div>
+              <ul className="scale-points" style={{ marginTop: 12 }}>
+                {q.scope.needs.points.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="note">{q.scope.note}</div>
         </div>
       </section>
 
