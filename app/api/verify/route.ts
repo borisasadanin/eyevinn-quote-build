@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 // The access code. Override in production via the QUOTE_ACCESS_CODE env var
 // (set it as an OSC parameter/secret when deploying). Default is for local use.
-const ACCESS_CODE = process.env.QUOTE_ACCESS_CODE || "STREAM2026";
+const ACCESS_CODE = process.env.QUOTE_ACCESS_CODE || "INTERCOMBBC2026";
 
 export async function POST(request: Request) {
   let code = "";

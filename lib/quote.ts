@@ -7,9 +7,9 @@
 export const quote = {
   meta: {
     company: "Eyevinn Technology",
-    quoteId: "EYV-2026-BUILD-001",
-    date: "3 July 2026",
-    client: "[Prospective Client]",
+    quoteId: "EYV-2026-INTERCOM-001",
+    date: "7 July 2026",
+    client: "BBC (British Broadcasting Corporation)",
     contactName: "Boris Asadanin",
     contactEmail: "boris.asadanin@eyevinn.se",
   },
@@ -27,203 +27,143 @@ export const quote = {
 
   hero: {
     eyebrow: "Eyevinn Technology",
-    title: "Your Streaming Platform, Built on Open Source",
+    title: "Open Intercom, Up and Running at the BBC",
     subtitle:
-      "A proposal to design, build and operate your new streaming platform on open-source components — full control, your data, no vendor lock-in.",
+      "A focused deployment engagement: a principal Open Intercom engineer sets up and verifies the full stack in your environment, and trains your team to run it yourselves.",
   },
 
   engagement: {
     heading: "Engagement Overview",
-    lede: "From discovery to a platform you own",
+    lede: "From intermittent troubleshooting to a verified working setup",
     paragraphs: [
-      "Following the discovery workshop, you have chosen to build your new streaming platform on open-source components — owning the software, workflows, roadmap and data — with Eyevinn as the partner to design, build and operate it.",
-      "The first and defining step is a detailed technical architecture: every component your platform needs, how they fit together, and how the whole scales to the audience you are building for. This blueprint turns the chosen direction into an executable plan and a firm cost model.",
-      "From there, Eyevinn builds the platform on Open Source Cloud (osaas.io) — a managed platform of the same open-source components — and operates and maintains it. Your launch targets are achievable: a streaming service by Easter 2027 and the linear channel on 1 September 2027. The detailed, validated timeline to reach them is itself one of the deliverables of this engagement — it comes out of the architecture and roadmap work rather than being fixed before that work is done.",
-      "Crucially, this path means you own your roadmap. Because every component is open source, any capability can be added by anyone — you are never waiting in line behind the other customers of a platform vendor, and you can bring development or operations in-house if and when you build the organisation for it.",
+      "The BBC has been working with Open Intercom for over a year and now runs a self-hosted deployment inside its own environment, on the Business Contribution Network (BCN). The recent troubleshooting rounds — most recently the mismatch between Intercom Manager v4.00 and a 2021 build of Symphony Media Bridge — show why debugging one symptom at a time is slow and frustrating for both sides.",
+      "As we have discussed and agreed, we propose a focused engagement instead. A principal engineer from the Open Intercom team works directly with your engineers to set up the whole stack correctly in your environment — including Eyevinn's maintained fork of Symphony Media Bridge, version-aligned with the Intercom Manager — and verifies it end-to-end against your production use cases.",
+      "The engagement includes the training and documentation your team needs to operate, troubleshoot and upgrade the installation independently, including a clear upgrade path as you move your platform forward (for example to Ubuntu 26.04 LTS). The goal is simple: after the engagement, you run Open Intercom yourselves, and Eyevinn is an option — not a dependency.",
+      "Proposed timing: focused working sessions with your team on 4–5 August 2026, preceded by preparation on our side and followed by wrap-up and any remaining fixes in the weeks after. The total effort is estimated at 4–5 working days, delivered remotely.",
     ],
   },
 
   // Grouped architecture: layers, each with its components.
   architecture: {
-    heading: "Platform Architecture",
-    lede: "Every component your platform needs — built from proven open-source building blocks",
+    heading: "What We Set Up",
+    lede: "The full Open Intercom stack, version-aligned and verified in your environment",
     intro:
-      "The architecture below covers the full path from camera and studio to viewer, plus the monetization, data and operations layers your business model depends on. Each component is open source and runs on Open Source Cloud; the detailed blueprint delivered in Phase 1 specifies configuration, data flows and capacity for each.",
+      "Open Intercom is a small number of components that must agree with each other — and with the network they run in. The engagement covers all of them: correct versions, correct configuration, and verified connectivity inside the BBC environment.",
     layers: [
       {
-        title: "Ingest & Production",
+        title: "Clients & Access",
         components: [
-          { name: "Live Ingest (SRT / RTMP / RIST)", body: "Secure, resilient ingest of live feeds from studio and field, with error correction for unstable field links." },
-          { name: "Live Production (OpenLive)", body: "Browser-based multi-camera vision mixing and audio, sub-500 ms latency — for in-house news, sport and weather." },
+          { name: "Web Client", body: "Browser-based intercom panels for producers and operators — no installed software required." },
+          { name: "Rooms & Production Setup", body: "Conference and room configuration matched to how your productions actually communicate." },
         ],
       },
       {
-        title: "Processing & Packaging",
+        title: "Control Plane",
         components: [
-          { name: "Live & VOD Transcoding", body: "Adaptive bitrate (ABR) ladders generated for every screen and network condition." },
-          { name: "Packaging (HLS / DASH, Low-Latency)", body: "Just-in-time packaging including LL-HLS / LL-DASH for low-latency live sport." },
-          { name: "Multi-DRM", body: "Widevine, FairPlay and PlayReady integration for premium content — the sport tier and other protected rights." },
+          { name: "Intercom Manager", body: "The orchestration layer and REST API — upgraded to the current release and configured for your environment." },
+          { name: "MongoDB", body: "Conference and state storage, verified against the manager version in use." },
         ],
       },
       {
-        title: "Origin, Storage & Delivery",
+        title: "Media Plane",
         components: [
-          { name: "Origin", body: "Scalable live and VOD origin serving all packaging formats." },
-          { name: "Object Storage", body: "VOD catalogue, catch-up / nDVR window and recordings." },
-          { name: "CDN & Multi-CDN", body: "Delivery optimised for Sweden with geo-restriction, and multi-CDN routing to absorb sport-sized traffic peaks." },
+          { name: "Symphony Media Bridge (Eyevinn fork)", body: "The WebRTC media bridge that mixes and routes audio. We deploy Eyevinn's maintained fork, version-aligned with the Intercom Manager — replacing the 2021 upstream build at the root of the current blocker." },
+          { name: "WebRTC Connectivity (TURN / STUN)", body: "Media path validation inside the BCN — the part that only ever surfaces in a real network, verified in yours." },
         ],
       },
       {
-        title: "Channels, Playout & Time-shift",
+        title: "Environment",
         components: [
-          { name: "Channel Engine (Linear & FAST)", body: "Schedules and plays out linear and FAST channels from the VOD library; the foundation for adding more channels over time." },
-          { name: "Catch-up / Start-over / nDVR", body: "Time-shifted viewing, start-over and recaps generated from the linear feed." },
-        ],
-      },
-      {
-        title: "Commerce & Monetization",
-        components: [
-          { name: "Flexible business models & campaigns", body: "Subscription tiers, ad-supported, pay-per-view, vouchers, bundles and time-limited campaigns — architected so new models and offers can be added over time, not locked to a single revenue model." },
-          { name: "Purchase flows & payment integration", body: "Logged-out and logged-in purchase and checkout journeys, connected to payment providers (e.g. Svea, card, Swish) — the commerce backbone behind every business model." },
-          { name: "Subscription, Entitlements & Paywall", body: "Tiered access (basic-with-ads through premium ad-free, sport in the top tier), entitlement management and access control." },
-          { name: "Server-Side Ad Insertion (SSAI / DAI)", body: "Server-guided dynamic ad insertion for the ad-supported tiers and TV — your ad server, your impression data, and syndicatable to other services." },
-        ],
-      },
-      {
-        title: "Frontend, Apps & Playback",
-        components: [
-          { name: "Public website & logged-out experience", body: "Marketing site, content browsing, campaign and offer pages, and sign-up / purchase flows for visitors who are not yet logged in." },
-          { name: "Client Apps (logged-in)", body: "iOS, Android, Web, Smart TV (Tizen / webOS), Android TV and Apple TV — a TV4 Play-class experience." },
-          { name: "Player & SDK", body: "Web player and SDKs across platforms, with playback quality and error handling built in." },
-        ],
-      },
-      {
-        title: "Content, Data & Operations",
-        components: [
-          { name: "Content Management & Metadata / EPG", body: "Catalogue, metadata and electronic program guide driving both on-demand discovery and the linear schedule." },
-          { name: "Analytics (EPAS)", body: "Open player analytics — viewer engagement and ad measurement, owned by you and not mediated by a vendor." },
-          { name: "Monitoring & Observability", body: "24/7 channel monitoring, alerting and SLA — essential for live sport reliability." },
-          { name: "Radio / Audio Streaming", body: "Free online listening for the in-house radio channels." },
+          { name: "Docker on Ubuntu", body: "Container configuration and inter-container networking on your VM, as-built and documented." },
+          { name: "Upgrade Path", body: "A documented procedure for future upgrades, including the move to Ubuntu 26.04 LTS as 24.04 leaves support." },
         ],
       },
     ],
     scale: {
-      title: "Built to scale",
-      body: "The architecture is designed to scale elastically to the concurrency your biggest live events demand. Every processing component runs as a stateless, horizontally-scalable workload on Open Source Cloud's Kubernetes platform, so transcoding and packaging capacity expands automatically under load and contracts when idle — you pay for what you use. Delivery is offloaded to a multi-CDN layer that absorbs sport-sized traffic peaks across Sweden, while origin, storage and the monetization layer scale independently. The result is a platform that runs lean day-to-day yet handles a national final or a breaking-news spike without re-architecting.",
+      title: "Why a focused engagement",
+      body: "Every issue you have hit over the past months traces back to the same thing: components that were never verified together, in your network. A few focused days with the engineer who knows the product resolves the class of problem — not just the current symptom. It is faster and cheaper than another six months of intermittent troubleshooting, and it ends with your team in control.",
       points: [
-        "Elastic, consumption-based transcoding and packaging",
-        "Multi-CDN delivery to absorb live sport peaks",
-        "Stateless, horizontally-scalable components",
-        "Origin, storage and monetization scale independently",
-        "Dimensioned to broadcaster-grade concurrency",
+        "Version-aligned stack: Intercom Manager + Eyevinn's maintained SMB fork",
+        "End-to-end verification in the real BBC network, not in isolation",
+        "Configuration adjusted to your production use cases",
+        "Training so day-to-day operation does not depend on Eyevinn",
+        "A documented upgrade path, including Ubuntu 26.04 LTS",
       ],
     },
   },
 
   deliverables: {
     heading: "What You Receive",
-    lede: "A detailed architecture, a platform built to launch, and ongoing operation",
+    lede: "A working intercom, the knowledge to run it, and a clear path forward",
     intro:
-      "The headline deliverable of Phase 1 is a detailed technical architecture blueprint. It is a working engineering document — the basis for the build, the cost model, and your own internal decisions.",
+      "The headline deliverable is a verified working Open Intercom deployment in your environment — but the lasting value is that your team leaves the engagement able to operate, troubleshoot and upgrade it without us.",
     items: [
       {
-        title: "Detailed architecture blueprint",
-        body: "Every component specified, with data flows, integration points, a capacity/scaling plan, and the reasoning behind each choice.",
+        title: "Verified working deployment",
+        body: "The full stack set up and verified end-to-end in your environment on the BCN — conference listing, room join and live audio between participants.",
       },
       {
-        title: "Implementation roadmap",
-        body: "A phased delivery plan to streaming launch (Easter 2027) and the linear channel (1 September 2027), with milestones and decision points.",
+        title: "Version-aligned stack",
+        body: "Current Intercom Manager together with Eyevinn's maintained fork of Symphony Media Bridge, with the versions and compatibility documented.",
       },
       {
-        title: "Firm cost model",
-        body: "Build, running and maintenance figures tied to your target concurrency and content volume — replacing the indicative ranges in this quote.",
+        title: "Deployment documentation & runbook",
+        body: "The as-built configuration — containers, networking, environment — plus operating procedures and the upgrade procedure, including the Ubuntu 26.04 LTS path.",
       },
       {
-        title: "The built platform",
-        body: "Designed, built and deployed on Open Source Cloud across all target devices, then operated and maintained by Eyevinn.",
+        title: "Training for your engineers",
+        body: "Hands-on training in operating, troubleshooting and upgrading the stack, so you can run it and extend it yourselves.",
       },
       {
-        title: "Ownership & handover",
-        body: "Open-source components plus documentation — you own the roadmap, and can add any capability, take operations in-house or move provider at any time. No lock-in.",
+        title: "Handover & recommendations",
+        body: "A short written handover: what was done, any remaining risks, recommended next steps, and options for ongoing support should you want it.",
       },
     ],
     timeline:
-      "On timing: your launch targets — a streaming service by Easter 2027 and the linear channel on 1 September 2027 — are achievable, and the engagement is planned to honour them. The exact, validated timeline is produced as part of this work (the implementation roadmap deliverable) rather than fixed before the architecture is done.",
+      "On timing: we propose focused working sessions with your team on 4–5 August 2026, with preparation beforehand and wrap-up plus any remaining fixes in the weeks after. Total estimated effort is 4–5 working days, delivered remotely.",
   },
 
   pricing: {
     heading: "Pricing",
-    lede: "This quote covers Phase 1 only — the Target Architecture. Phases 2 and 3 shown below are the subsequent phases; their prices and timelines are defined by the Phase 1 deliverables, not committed in this quote.",
+    lede: "Time & materials at a fixed hourly rate — you pay for the hours actually worked.",
     parts: [
       {
         badge: "Covered by this quote",
-        tag: "Phase 1 — Target Architecture",
-        subtag: "Fixed price — excl. VAT",
-        title: "Target Architecture",
-        body: "A fixed-price project — the only phase this quote covers. It delivers the detailed target architecture for the entire platform, a plan for operation and maintenance, and firm prices and timelines for Phases 2 and 3.",
-        price: "180 000 SEK",
-        unit: "fixed price — excl. VAT",
+        tag: "Deployment Engagement",
+        subtag: "Time & materials — excl. VAT",
+        title: "Open Intercom Deployment & Training",
+        body: "A principal Open Intercom engineer sets up, verifies and hands over the stack in your environment, and trains your team. The engagement is charged on time & materials: parts of your environment may need changes or fixes that cannot be scoped in advance, and a fixed price would force us to price that risk in. This way you pay only for the work actually needed.",
+        price: "€159",
+        unit: "per hour — excl. VAT",
         rows: [
-          { label: "Scope", value: "This quote covers Phase 1 only." },
-          { label: "You receive", value: "Detailed architecture for the whole platform, an operations plan, and priced Phases 2 & 3 with timelines." },
-          { label: "Duration", value: "Estimated 3 weeks to completion." },
-          { label: "Payment", value: "On delivery. 30 calendar days' terms." },
-          { label: "Credit", value: "50% of this fee — 90 000 SEK — is deducted from the Phase 2 price if you choose to proceed to implementation." },
-        ],
-      },
-      {
-        badge: "Subsequent phase",
-        upcoming: true,
-        tag: "Phase 2 — Implementation",
-        subtag: "Not part of this quote — priced from Phase 1",
-        title: "Design, Build & Launch",
-        body: "Building the platform to your launch milestones. Scope, price and timeline are defined by the target architecture delivered in Phase 1.",
-        price: "Set by Phase 1",
-        unit: "priced & scheduled in Phase 1",
-        rows: [
-          { label: "Phase 1 credit", value: "90 000 SEK (50% of the Phase 1 fee) is deducted from this phase if you proceed." },
-          { label: "Pricing", value: "Determined by the Phase 1 target architecture." },
-          { label: "Timeline", value: "Set out in the Phase 1 implementation roadmap." },
-          { label: "Scope", value: "Ingest, processing, delivery, apps, commerce and data layers." },
-        ],
-      },
-      {
-        badge: "Subsequent phase",
-        upcoming: true,
-        tag: "Phase 3 — Operation & Maintenance",
-        subtag: "Not part of this quote — priced from Phase 1",
-        title: "Managed Operation & Maintenance",
-        body: "Eyevinn operates and maintains the running platform: monitoring, updates, incident response and SLA. The monthly running cost — including third-party components such as CDN, DRM and payment (e.g. Klarna) — is defined by the target architecture delivered in Phase 1.",
-        price: "Set by Phase 1",
-        unit: "monthly cost — excl. VAT",
-        rows: [
-          { label: "Monthly cost", value: "Determined by the Phase 1 target architecture." },
-          { label: "Third-party", value: "CDN, DRM and payment (e.g. Klarna) billed at cost, scaling with usage." },
-          { label: "Infrastructure", value: "OSC consumption billed at cost — no platform margin." },
-          { label: "Included", value: "Monitoring, updates, incident response, SLA and monthly report." },
+          { label: "Estimated effort", value: "4–5 working days (approx. 32–40 hours)." },
+          { label: "Indicative total", value: "Approx. €5,100–€6,400 at the estimated effort." },
+          { label: "Delivery", value: "Remote, in working sessions with your engineers." },
+          { label: "Proposed dates", value: "Focused sessions 4–5 August 2026, follow-up in the weeks after as needed." },
+          { label: "Invoicing", value: "Monthly, on actual hours worked. 30 calendar days' terms." },
         ],
       },
     ],
     footnote:
-      "All prices exclude VAT. Phase 1 is a fixed price, of which 50% (90 000 SEK) is credited against the Phase 2 price if the client continues to implementation; the price of Phase 2 and the monthly cost of Phase 3 are defined by the target architecture delivered in Phase 1. Infrastructure (Open Source Cloud) and third-party components (CDN, DRM, payment, etc.) are billed at cost with no platform margin. On-site travel outside Stockholm invoiced at cost. Payment terms 30 calendar days.",
+      "All prices exclude VAT. The engagement is charged on time & materials at €159 per hour; the 4–5 day figure is an estimate, not a cap — should it become clear that the estimate will be exceeded, we flag it before further hours are incurred. Further assistance in the weeks after the engagement is billed at the same hourly rate. Delivery is remote; any separately agreed on-site work is invoiced with travel at cost. Payment terms 30 calendar days.",
   },
 
   assumptions: {
     heading: "About Eyevinn",
     paragraphs: [
-      "Eyevinn Technology has been an independent video streaming consultancy since 2013, working with some of Europe's most demanding broadcasters across the full media chain — from camera to screen. We are not affiliated with any managed streaming platform vendor, which means our advice and our build are based entirely on what is right for your service — not on commercial relationships.",
-      "We build the open-source components this platform is made of, and we operate them for you on Open Source Cloud — so you get a managed solution without giving up ownership, insight or the freedom to run it with anyone you choose.",
+      "Eyevinn Technology has been an independent video streaming consultancy since 2013, working with some of Europe's most demanding broadcasters across the full media chain — from camera to screen. We are not affiliated with any platform vendor, which means our advice is based entirely on what is right for your setup.",
+      "We created and maintain Open Intercom, and we maintain the Eyevinn fork of Symphony Media Bridge it runs on. The engineer you get is a principal engineer on the product itself — the shortest possible path between a question and an answer.",
     ],
     links: [
-      { label: "Open Source Cloud (osaas.io)", href: "https://www.osaas.io" },
+      { label: "Open Intercom on GitHub", href: "https://github.com/Eyevinn/intercom-manager" },
       { label: "Eyevinn Technology", href: "https://eyevinn.se" },
     ],
   },
 
   cta: {
-    heading: "Ready to build your platform?",
-    body: "Let's start with the architecture. Reply to this quote and we'll set up a kickoff.",
-    primary: { label: "Explore Open Source Cloud", href: "https://www.osaas.io" },
+    heading: "Ready to get Open Intercom running?",
+    body: "Reply to confirm the proposed August dates and we'll book the engineer and send over a short preparation checklist.",
+    primary: { label: "Open Intercom on GitHub", href: "https://github.com/Eyevinn/intercom-manager" },
   },
 
   terms: {

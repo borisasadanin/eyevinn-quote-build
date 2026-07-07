@@ -135,8 +135,8 @@ export default function Page() {
               <ArchDiagram />
             </div>
             <figcaption>
-              The platform as a media value chain — from production to consumption, including the commerce and
-              logged-out layers: business models, purchase &amp; payment flows, and the public website.
+              The Open Intercom stack as deployed in your environment — browser clients, control plane and media
+              plane, hosted in Docker on your Ubuntu VM inside the BBC Business Contribution Network.
             </figcaption>
           </figure>
 

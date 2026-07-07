@@ -1,5 +1,5 @@
-// Media value-chain diagram, redrawn to match the quote's dark / amber theme.
-// Boxes with an amber border are the commerce / logged-out additions.
+// Open Intercom deployment diagram, drawn to match the quote's dark / amber theme.
+// Boxes with an amber border are the parts hosted inside the BBC environment.
 
 type Box = {
   x: number; y: number; w: number; h: number;
@@ -9,52 +9,29 @@ type Box = {
 
 type Banner = { x: number; w: number; label: string };
 
-const cols = [20, 184, 348, 512, 676, 840, 1004, 1168];
-const W = 150;
-const SPAN2 = 314; // two columns + gap
+const W = 250;
+const cols = [20, 310, 600, 890];
 
 const boxes: Box[] = [
-  // Top row — commerce additions (amber border)
-  { x: cols[2], y: 20, w: SPAN2, h: 86, variant: "accent", lines: ["Business models & campaigns", "subscription · PPV · vouchers · ads"] },
-  { x: cols[4], y: 20, w: W, h: 86, variant: "accent", lines: ["Purchase flows", "& payment", "integration"] },
+  // Row 1 — the main chain from user to media
+  { x: cols[0], y: 30, w: W, h: 130, variant: "upper", lines: ["Producers & operators", "browser-based panels,", "no installed software"] },
+  { x: cols[1], y: 30, w: W, h: 130, variant: "base", lines: ["Open Intercom", "web client", "rooms & panels"] },
+  { x: cols[2], y: 30, w: W, h: 130, variant: "base", lines: ["Intercom Manager", "control plane,", "REST API — current release"] },
+  { x: cols[3], y: 30, w: W, h: 130, variant: "base", lines: ["Symphony Media Bridge", "Eyevinn fork — WebRTC SFU,", "version-aligned"] },
 
-  // Admin / rights / security
-  { x: cols[2], y: 118, w: W, h: 86, variant: "upper", lines: ["Customer &", "product admin"] },
-  { x: cols[3], y: 118, w: W, h: 86, variant: "upper", lines: ["Availability", "/ rights"] },
-  { x: cols[4], y: 118, w: W, h: 86, variant: "upper", lines: ["Content", "security"] },
+  // Row 2 — supporting services
+  { x: cols[2], y: 190, w: W, h: 110, variant: "base", lines: ["MongoDB", "conference & state"] },
+  { x: cols[3], y: 190, w: W, h: 110, variant: "base", lines: ["TURN / STUN", "media path through", "your network"] },
 
-  // Frontend (logged-in & logged-out) — spans two rows over consumption
-  { x: cols[6], y: 118, w: SPAN2, h: 184, variant: "accent", lines: ["Frontend", "apps & website", "(logged-in & -out)"] },
-
-  // Metadata + ad management
-  { x: cols[2], y: 216, w: SPAN2, h: 86, variant: "upper", lines: ["Metadata & content", "management"] },
-  { x: cols[4], y: 216, w: W, h: 86, variant: "upper", lines: ["Ad", "management"] },
-
-  // Base row 1 (linear)
-  { x: cols[0], y: 314, w: W, h: 150, variant: "base", lines: ["Linear TV", "production"] },
-  { x: cols[1], y: 314, w: W, h: 150, variant: "base", lines: ["Live contribution", "for linear", "broadcasts"] },
-  { x: cols[2], y: 314, w: W, h: 150, variant: "base", lines: ["Transcoding &", "compression", "(linear)"] },
-  { x: cols[3], y: 314, w: W, h: 150, variant: "base", lines: ["Origin & media", "preparation", "(linear)"] },
-
-  // Tall boxes (span both base rows)
-  { x: cols[4], y: 314, w: W, h: 312, variant: "base", lines: ["Dynamic", "ad", "insertion"] },
-  { x: cols[5], y: 314, w: W, h: 312, variant: "base", lines: ["Media", "distribution"] },
-  { x: cols[6], y: 314, w: W, h: 312, variant: "base", lines: ["Video player"] },
-  { x: cols[7], y: 314, w: W, h: 312, variant: "base", lines: ["Tracking &", "analytics"] },
-
-  // Base row 2 (VOD)
-  { x: cols[0], y: 476, w: W, h: 150, variant: "base", lines: ["VOD", "production"] },
-  { x: cols[1], y: 476, w: W, h: 150, variant: "base", lines: ["Batch transfer", "for VOD content"] },
-  { x: cols[2], y: 476, w: W, h: 150, variant: "base", lines: ["Transcoding &", "compression", "(VOD)"] },
-  { x: cols[3], y: 476, w: W, h: 150, variant: "base", lines: ["Origin & media", "preparation", "(VOD)"] },
+  // Environment box spanning the hosted components
+  { x: cols[1], y: 330, w: cols[3] + W - cols[1], h: 96, variant: "accent", lines: ["BBC environment", "Docker on Ubuntu VM · Business Contribution Network (BCN)"] },
 ];
 
 const banners: Banner[] = [
-  { x: cols[0], w: W, label: "Production" },
-  { x: cols[1], w: W, label: "Contribution" },
-  { x: cols[2], w: 478, label: "Media Preparation" },
-  { x: cols[5], w: W, label: "Distribution" },
-  { x: cols[6], w: SPAN2, label: "Consumption" },
+  { x: cols[0], w: W, label: "Users" },
+  { x: cols[1], w: W, label: "Client" },
+  { x: cols[2], w: W, label: "Control plane" },
+  { x: cols[3], w: W, label: "Media plane" },
 ];
 
 const FILL: Record<string, string> = {
@@ -75,9 +52,10 @@ function BoxText({ b }: { b: Box }) {
           x={cx}
           y={startY + i * lh}
           textAnchor="middle"
-          fontSize={i === 1 && b.variant === "accent" && ln.includes("·") ? 11 : 13.5}
+          fontSize={i === 0 ? 14.5 : 12.5}
+          fontWeight={i === 0 ? 600 : 400}
           fill="#ffffff"
-          fillOpacity={i === 1 && b.variant === "accent" && ln.includes("·") ? 0.8 : 1}
+          fillOpacity={i === 0 ? 1 : 0.8}
         >
           {ln}
         </text>
@@ -88,7 +66,7 @@ function BoxText({ b }: { b: Box }) {
 
 export default function ArchDiagram() {
   return (
-    <svg viewBox="0 0 1338 738" role="img" aria-label="Media value chain architecture" style={{ width: "100%", height: "auto", display: "block" }}>
+    <svg viewBox="0 0 1160 540" role="img" aria-label="Open Intercom deployment architecture" style={{ width: "100%", height: "auto", display: "block" }}>
       {/* boxes */}
       {boxes.map((b, i) => (
         <g key={i}>
@@ -99,8 +77,8 @@ export default function ArchDiagram() {
             height={b.h}
             rx={9}
             fill={FILL[b.variant || "base"]}
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth={1}
+            stroke={b.variant === "accent" ? "rgba(245,158,11,0.55)" : "rgba(255,255,255,0.08)"}
+            strokeWidth={b.variant === "accent" ? 1.5 : 1}
           />
           <BoxText b={b} />
         </g>
@@ -108,7 +86,7 @@ export default function ArchDiagram() {
 
       {/* stage banners (arrows) */}
       {banners.map((bn, i) => {
-        const y = 650;
+        const y = 460;
         const h = 64;
         const tip = 18;
         const pts = `${bn.x},${y} ${bn.x + bn.w - tip},${y} ${bn.x + bn.w},${y + h / 2} ${bn.x + bn.w - tip},${y + h} ${bn.x},${y + h}`;

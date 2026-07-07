@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: `Quote ${quote.meta.quoteId} | ${quote.hero.title} — ${quote.meta.company}`,
   description:
-    "Confidential quote from Eyevinn Technology: a fixed-fee NDA-protected streaming service discovery workshop with optional T&M advisory.",
+    "Confidential quote from Eyevinn Technology: a focused Open Intercom deployment and training engagement, delivered remotely on time & materials.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
