@@ -166,6 +166,7 @@ export const quote = {
         rows: [
           { label: "Scope", value: "This quote covers Phase 1 only." },
           { label: "You receive", value: "Detailed architecture for the whole platform, an operations plan, and priced Phases 2 & 3 with timelines." },
+          { label: "Duration", value: "Estimated 3 weeks to completion." },
           { label: "Payment", value: "On delivery. 30 calendar days' terms." },
           { label: "Credit", value: "50% of this fee — 90 000 SEK — is deducted from the Phase 2 price if you choose to proceed to implementation." },
         ],
