@@ -174,6 +174,14 @@ export default function Page() {
               </ul>
             </div>
             <div className="arch-card">
+              <div className="arch-card-name">{q.scope.excluded.title}</div>
+              <ul className="scale-points" style={{ marginTop: 12 }}>
+                {q.scope.excluded.points.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="arch-card">
               <div className="arch-card-name">{q.scope.needs.title}</div>
               <ul className="scale-points" style={{ marginTop: 12 }}>
                 {q.scope.needs.points.map((p, i) => (

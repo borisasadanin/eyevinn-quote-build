@@ -10,7 +10,7 @@ const steps: Step[] = [
   },
   {
     label: "2 · Deploy & align",
-    lines: ["Current Intercom Manager,", "Eyevinn's SMB fork,", "MongoDB — versions aligned,", "environment fixed as we go."],
+    lines: ["Current Intercom Manager,", "Eyevinn's SMB fork,", "MongoDB — versions aligned,", "config & environment fixed."],
   },
   {
     label: "3 · Verify",
@@ -18,7 +18,7 @@ const steps: Step[] = [
   },
   {
     label: "4 · Train & hand over",
-    lines: ["Hands-on training,", "runbook & upgrade path,", "written handover,", "follow-up as needed."],
+    lines: ["Hands-on training,", "runbook & documentation,", "written handover,", "follow-up as needed."],
   },
 ];
 
@@ -29,7 +29,7 @@ const X0 = 20;
 export default function ArchDiagram() {
   return (
     <svg
-      viewBox="0 0 1180 430"
+      viewBox="0 0 1180 530"
       role="img"
       aria-label="Engagement flow: prepare, deploy and align, verify, train and hand over"
       style={{ width: "100%", height: "auto", display: "block" }}
@@ -82,10 +82,29 @@ export default function ArchDiagram() {
         );
       })}
 
+      {/* decision-point strip */}
+      <rect
+        x={X0}
+        y={322}
+        width={X0 + 3 * (W + GAP) + W - X0}
+        height={68}
+        rx={9}
+        fill="none"
+        stroke="rgba(245,158,11,0.55)"
+        strokeWidth={1.5}
+        strokeDasharray="6 5"
+      />
+      <text x={X0 + (3 * (W + GAP) + W) / 2} y={350} textAnchor="middle" fontSize={13.5} fontWeight={600} fill="#f59e0b">
+        Decision point — if changes to Open Intercom itself are needed
+      </text>
+      <text x={X0 + (3 * (W + GAP) + W) / 2} y={372} textAnchor="middle" fontSize={12.5} fill="#ffffff" fillOpacity={0.8}>
+        Your team develops it in your own fork · or Eyevinn develops it as a separately agreed addition
+      </text>
+
       {/* environment strip */}
       <rect
         x={X0}
-        y={330}
+        y={420}
         width={X0 + 3 * (W + GAP) + W - X0}
         height={72}
         rx={9}
@@ -93,10 +112,10 @@ export default function ArchDiagram() {
         stroke="rgba(245,158,11,0.55)"
         strokeWidth={1.5}
       />
-      <text x={X0 + (3 * (W + GAP) + W) / 2} y={360} textAnchor="middle" fontSize={14.5} fontWeight={600} fill="#ffffff">
+      <text x={X0 + (3 * (W + GAP) + W) / 2} y={450} textAnchor="middle" fontSize={14.5} fontWeight={600} fill="#ffffff">
         Delivered remotely, in your environment
       </text>
-      <text x={X0 + (3 * (W + GAP) + W) / 2} y={382} textAnchor="middle" fontSize={12.5} fill="#ffffff" fillOpacity={0.8}>
+      <text x={X0 + (3 * (W + GAP) + W) / 2} y={472} textAnchor="middle" fontSize={12.5} fill="#ffffff" fillOpacity={0.8}>
         The full Open Intercom stack — Docker on Ubuntu VM · BBC Business Contribution Network (BCN)
       </text>
     </svg>
