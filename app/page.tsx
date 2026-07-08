@@ -281,7 +281,7 @@ export default function Page() {
           </a>
           <a
             className="cta-mail"
-            href={`mailto:${q.meta.contactEmail}?subject=Quote ${q.meta.quoteId} — ${q.hero.title}`}
+            href={`mailto:${q.meta.contactEmail}?subject=Quote ${q.meta.quoteId}: ${q.hero.title}`}
           >
             {q.meta.contactName} · {q.meta.contactEmail}
           </a>

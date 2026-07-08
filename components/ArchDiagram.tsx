@@ -10,7 +10,7 @@ const steps: Step[] = [
   },
   {
     label: "2 · Deploy & align",
-    lines: ["Current Intercom Manager,", "Eyevinn's SMB fork,", "MongoDB — versions aligned,", "config & environment fixed."],
+    lines: ["Current Intercom Manager,", "Eyevinn's SMB fork,", "MongoDB, versions aligned,", "config & environment fixed."],
   },
   {
     label: "3 · Verify",
@@ -95,7 +95,7 @@ export default function ArchDiagram() {
         strokeDasharray="6 5"
       />
       <text x={X0 + (3 * (W + GAP) + W) / 2} y={350} textAnchor="middle" fontSize={13.5} fontWeight={600} fill="#f59e0b">
-        Decision point — if changes to Open Intercom itself are needed
+        Decision point: if changes to Open Intercom itself are needed
       </text>
       <text x={X0 + (3 * (W + GAP) + W) / 2} y={372} textAnchor="middle" fontSize={12.5} fill="#ffffff" fillOpacity={0.8}>
         Your team develops it in your own fork · or Eyevinn develops it as a separately agreed addition
@@ -116,7 +116,7 @@ export default function ArchDiagram() {
         Delivered remotely, in your environment
       </text>
       <text x={X0 + (3 * (W + GAP) + W) / 2} y={472} textAnchor="middle" fontSize={12.5} fill="#ffffff" fillOpacity={0.8}>
-        The full Open Intercom stack — Docker on Ubuntu VM · BBC Business Contribution Network (BCN)
+        The full Open Intercom stack: Docker on Ubuntu VM · BBC Business Contribution Network (BCN)
       </text>
     </svg>
   );
