@@ -45,7 +45,7 @@ export const quote = {
     paragraphs: [
       "The BBC has been working with Open Intercom for over a year and now runs a self-hosted deployment inside its own environment, on the Business Contribution Network (BCN). Along the way you have hit a series of blockers, most recently a mismatch between Intercom Manager v4.00 and a 2021 build of Symphony Media Bridge. Each one has been investigated thoroughly on your side, but they share a root cause: the stack has never been set up and verified as a whole, in your network, by someone who knows the product from the inside.",
       "As we have discussed and agreed, we therefore propose a focused engagement instead of continued ad-hoc troubleshooting. A principal engineer from the Open Intercom team works directly with your engineers to get the whole stack correctly installed, version-aligned and configured, and then verifies it end-to-end against the way your productions will actually use it.",
-      "The goal is independence, not dependence: the engagement ends with your team trained, the setup documented, and you in control of the platform going forward. And because Open Intercom is open source, that control is real: if the product itself ever needs to work differently for you, your team can build it in your own fork, or you can commission Eyevinn to build it for you.",
+      "The goal is independence, not dependence: we aim to end the engagement with your team trained, the setup documented, and you in control of the platform going forward. And because Open Intercom is open source, that control is real: if the product itself ever needs to work differently for you, your team can build it in your own fork, or you can commission Eyevinn to build it for you.",
       "Work starts on a date we agree together once the engagement is confirmed, and is delivered remotely in working sessions with your team.",
     ],
   },
@@ -54,17 +54,17 @@ export const quote = {
     heading: "How the Engagement Runs",
     lede: "Four steps from today's blocker to a working intercom your team owns",
     intro:
-      "The engagement is deliberately short and hands-on. We prepare before we take your engineers' time, fix the stack rather than the symptom, prove it works in your real network, and leave the knowledge with you. One boundary is worth stating up front: this engagement deploys and configures the Open Intercom software as it is. It does not include developing changes to the product itself. If the work uncovers the need for such changes, that becomes an explicit decision we take together, never scope that creeps in unnoticed.",
+      "The engagement is deliberately short and hands-on. We prepare before we take your engineers' time, fix the stack rather than the symptom, prove it works in your real network, and leave the knowledge with you. One boundary is worth stating up front: this engagement deploys and configures the Open Intercom software as it is. It does not include developing changes to the product itself. If the work uncovers the need for such changes, that becomes an explicit decision we take together, never scope that creeps in unnoticed. Equally important: the estimate assumes your prerequisites are in place. Where progress depends on changes with internal lead times at the BBC, such as firewall or access requests, we pause the engagement rather than keep the engineer waiting, and resume by agreement once the blocker is cleared.",
     figcaption:
       "The engagement in four steps, delivered remotely in your environment. If changes to the Open Intercom product itself turn out to be needed, that is an explicit decision point, not silent scope.",
     steps: [
       {
         title: "Prepare",
-        body: "Before any sessions are booked, we review your current setup: versions, configuration, logs and the investigation work you have already done. We prepare a version and configuration plan plus a short checklist of accesses and prerequisites. We also flag as early as possible if anything in your environment looks like it will require changes to Open Intercom itself, so that decision can be taken before it blocks the sessions. Your engineers' time is spent fixing, not explaining.",
+        body: "Before any sessions are booked, we review your current setup: versions, configuration, logs and the investigation work you have already done. We prepare a version and configuration plan plus a short checklist of accesses and prerequisites. We also flag as early as possible if anything in your environment looks like it will require changes to Open Intercom itself, so that decision can be taken before it blocks the sessions. Sessions are booked only once the prerequisites on the checklist are in place, so lead times on your side, such as firewall or access changes, do not consume engagement hours. Your engineers' time is spent fixing, not explaining.",
       },
       {
         title: "Deploy & align",
-        body: "Together with your team we bring the stack to a known-good state: the current Intercom Manager release, Eyevinn's maintained fork of Symphony Media Bridge (replacing the 2021 upstream build behind the current blocker), and a MongoDB configuration verified against those versions. Configuration and environment issues we find along the way, such as container networking or host configuration, are fixed as we go. Should something instead turn out to require development on the Open Intercom software, we stop and decide together how to handle it: your team builds it in a fork, or Eyevinn builds it as a separately agreed addition.",
+        body: "Together with your team we bring the stack to a known-good state: the current Intercom Manager release, Eyevinn's maintained fork of Symphony Media Bridge (replacing the 2021 upstream build behind the current blocker), and a MongoDB configuration verified against those versions. Configuration and environment issues we find along the way, such as container networking or host configuration, are fixed as we go. Should something instead turn out to require development on the Open Intercom software, including the case where your environment cannot run the stack the way other deployments do, we stop and decide together how to handle it: your team builds it in a fork, or Eyevinn builds it as a separately agreed addition at the same hourly rate.",
       },
       {
         title: "Verify end-to-end",
@@ -94,9 +94,10 @@ export const quote = {
     excluded: {
       title: "Not in scope",
       points: [
-        "Development of changes or new features in the Open Intercom software itself; if needed, that is an explicit decision (see below)",
+        "Development of changes or new features in the Open Intercom software itself, including adaptations needed because your environment cannot run the stack as other deployments do; if needed, that is an explicit decision (see below)",
         "Guaranteed support for specific host operating systems or versions; the engagement includes an assessment of what such support requires, and any product changes it calls for are a development task",
         "Ongoing operation of the deployment; the engagement ends with your team running it",
+        "Waiting on client-side lead times; if work is blocked by pending changes on your side, the engagement pauses and resumes by agreement",
       ],
     },
     needs: {
@@ -105,17 +106,18 @@ export const quote = {
         "Remote access to the environment, or an engineer driving while we work side by side",
         "Your engineers in the working sessions; the training happens in the work itself",
         "Someone who can carry out network or firewall changes inside the BBC where we cannot",
+        "Prerequisites from the preparation checklist in place before sessions are booked, including any changes with internal lead times",
         "A couple of test participants for the end-to-end verification",
       ],
     },
-    note: "Open Intercom is open source, and that is the point of it. If the work uncovers something that requires changes to the product itself, we take an explicit decision together: your team develops it in your own fork, or you commission Eyevinn to develop it with the same engineer, agreed and priced before any hours are spent. Nothing is silently absorbed into this engagement. The engagement itself is charged on time & materials because parts of your environment cannot be scoped from the outside. You pay for the work actually needed, and nothing for risk margins.",
+    note: "Open Intercom is open source, and that is the point of it. If the work uncovers something that requires changes to the product itself, we take an explicit decision together: your team develops it in your own fork, or you commission Eyevinn to develop it with the same engineer, agreed and priced before any hours are spent. The same applies if your environment turns out to be unable to run Open Intercom the way other deployments do: adapting the product to your environment is development work, billed at the same hourly rate. Nothing is silently absorbed into this engagement. The engagement itself is charged on time & materials because parts of your environment cannot be scoped from the outside. You pay for the work actually needed, and nothing for risk margins.",
   },
 
   deliverables: {
     heading: "What You Receive",
     lede: "A working intercom, the knowledge to run it, and a clear path forward",
     intro:
-      "The headline deliverable is a verified working Open Intercom deployment in your environment, but the lasting value is that your team leaves the engagement able to operate, troubleshoot and upgrade it without us.",
+      "The headline deliverable is a verified working Open Intercom deployment in your environment, but the lasting value is that your team leaves the engagement able to operate, troubleshoot and upgrade it without us. As the engagement is charged on time & materials, the items below describe the content and target of the work rather than a fixed-price commitment: how quickly we get there depends on what we find in your environment and on lead times on your side.",
     items: [
       {
         title: "Verified working deployment",
@@ -143,7 +145,7 @@ export const quote = {
       },
     ],
     timeline:
-      "On timing: the total effort is estimated at 4–5 working days, delivered remotely. The work does not need to be contiguous: preparation, focused sessions and follow-up are planned together with your team, and work starts on a date we agree once the engagement is confirmed.",
+      "On timing: the total effort is estimated at 4–5 working days, delivered remotely. The work does not need to be contiguous: preparation, focused sessions and follow-up are planned together with your team, and work starts on a date we agree once the engagement is confirmed. The estimate assumes the prerequisites from the preparation checklist are in place. Should work become blocked by lead times on your side, we pause the engagement, the engineer is released to other assignments, and we resume on a date we agree; hours already worked are invoiced as normal.",
   },
 
   pricing: {
@@ -164,13 +166,14 @@ export const quote = {
           { label: "Indicative total", value: "Approx. €5,100–€6,400 at the estimated effort." },
           { label: "Delivery", value: "Remote, in working sessions with your engineers." },
           { label: "Travel", value: "Not expected. Should travel be agreed, travel and accommodation costs are added and paid by the client." },
+          { label: "Blockers", value: "If work is blocked by lead times on your side, the engagement pauses and resumes by agreement. Waiting time is not billed, and the engineer is not reserved during pauses." },
           { label: "Start", value: "By agreement, planned together once the engagement is confirmed." },
           { label: "Invoicing", value: "Monthly, on actual hours worked. 30 calendar days' terms." },
         ],
       },
     ],
     footnote:
-      "All prices exclude VAT. The engagement is charged on time & materials at €159 per hour. The 4–5 day figure is an estimate, not a cap; should it become clear that the estimate will be exceeded, we flag it before further hours are incurred. Further assistance in the weeks after the engagement is billed at the same hourly rate. Development of changes to the Open Intercom software itself is not included; should such changes prove necessary, they are agreed and priced separately, or made by your own team in a fork. Delivery is remote. Should travel be required, travel and accommodation costs are added and paid by the client. Payment terms 30 calendar days.",
+      "All prices exclude VAT. The engagement is charged on time & materials at €159 per hour, and hours worked are invoiced regardless of whether all targets have been reached; the deliverables describe the target and content of the work, not a fixed-price commitment. The 4–5 day figure is an estimate, not a cap; should it become clear that the estimate will be exceeded, we flag it before further hours are incurred. The estimate assumes the prerequisites from the preparation checklist are in place before sessions are booked. If work is blocked by lead times on the client's side, the engagement pauses and resumes by agreement; the engineer is not reserved during pauses. Further assistance in the weeks after the engagement is billed at the same hourly rate. Development of changes to the Open Intercom software itself is not included, including adaptations required because the client's environment cannot run the stack as other deployments do; should such changes prove necessary, they are agreed and priced separately at the same hourly rate, or made by the client's own team in a fork. Delivery is remote. Should travel be required, travel and accommodation costs are added and paid by the client. Payment terms 30 calendar days.",
   },
 
   assumptions: {
@@ -202,6 +205,12 @@ export const quote = {
         title: "Travel and Accommodation",
         body: [
           "This engagement is delivered remotely. Should travel be required and agreed, the client shall bear the cost: Eyevinn shall be reimbursed for reasonable travel expenses, accommodation, travel time and other expenses outside the Stockholm area.",
+        ],
+      },
+      {
+        title: "Client Dependencies",
+        body: [
+          "Time estimates assume that the client provides accesses, prerequisites and client-side changes (such as network or firewall changes) in a timely manner. If the work is blocked by delays on the client's side, the engagement is paused and resumed on a date agreed by both parties. Eyevinn cannot guarantee the consultant's immediate availability upon resumption. Hours worked before a pause are invoiced as normal.",
         ],
       },
       {
